@@ -1,0 +1,53 @@
+Estruturas
+
+Usamos duas estruturas, 
+
+typedef struct {
+    char data[11];
+    int numero_cauda;
+    int duracao; // duração em minutos
+} Voo;
+
+para respresentar os voos e 
+
+typedef struct aeronave{
+    int numero_cauda;
+    int esquadra;
+    char fabricante_Modelo[50];
+    int horas_inicial;
+} aeronave;
+
+para representar as aeronaves.
+
+
+Representação das listas de aeronaves e voos
+
+Resolvemos utilizar listas globais para a representção de todas as aeronaves e todos os voos, isto facilita imenso no que toca a utilizar estas mesmas listas quando necessário
+Juntamente com estas listas globais, colocamos uma variável global que determina a quantidade de aeronaves/voos que estão colocadas na lista isto é útil na criação de loops, pois assim sabemos quando o mesmo deve acabar de percorrer a lista.
+
+
+Funções de estatisticas
+
+Acho importante mencionar a forma como criamos as funções de estatisticas.
+
+Indicar a esquadra com mais horas de voo:
+
+Primeiro nós criamos uma variável auxiliar, uma lista de exatamente o mesmo tamanho da lista de aeronaves e colocamos lá todas as aeronaves, ordenadas por ordem crescente de esquadra.Isto porque assim, as aeronaves que tem esquadras iguais vão ficar todas juntas na lista.
+Depois adicionamos as respetivas horas de cada voo á sua respetiva aeronave percorrendo a lista de voos, e procurando na lista de aeronaves a aeronave que corresponde ao voo do indice em que estamos.
+Finalmente, agora que temos as aeronaves da mesma esquadra todas juntas e as horas de voo corretas, basta percorrer esta mesma lista e fazer um contador que vê qual é a esquadra com o maio nº de horas
+
+Indicar as 5 aeronaves com mais horas de voo:
+
+Adicionamos as respetivas horas de cada voo á sua aeronave (como fizemos anteriormente)
+Ordenamos a lista de aeronaves por ordem crescente de horas de voo
+E agora basta ir buscar as ultimas 5 aeronaves da lista, que são as com maior número de horas.
+
+
+Organização do código
+
+Este código está separado em 5 ficheiros .c diferentes , cada um com o seu respetivo .h
+
+aeronaves.c    -> Todas as funçoes relacionadas á lista de aeronaves, importação, exportação e criação de listas especificas
+voos.c         -> Todas as funções relacionadas á lista de voos, importação , exportação e criação de listas especificas
+estatisticas.c -> Todas as funçõoes relacionadas a estatisticas, incluindo as funções auxiliares utilizadas
+utils.c        -> Apenas contêm as funçoes de abrir e fechar um fic
